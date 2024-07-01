@@ -12,7 +12,7 @@ applications:
     JBP_CONFIG_COMPONENTS: '{ "jres": ["com.sap.xs.java.buildpack.jre.SAPMachineJRE"] }'
     JBP_CONFIG_SAP_MACHINE_JRE: '{ "version": "17.+" }'
     JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+ }, memory_calculator: { version: 3.+ } }'
-    TARGET_RUNTIME: tomcat10
+    TARGET_RUNTIME: main
   services:
-  - myxsuaa
+  - mysecurexsuaa
   - mydestination

@@ -16,6 +16,8 @@ SETUP & DEPLOY:
 
 cf create-service destination lite mydestination
 cf create-service xsuaa application myxsuaa
+cf create-service xsuaa application mysecurexsuaa -c xs-security.json
+cf update-service mysecurexsuaa -c xs-security.json
 
 mvn clean install -Dmaven.test.skip=true
 cf push

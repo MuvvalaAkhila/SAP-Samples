@@ -76,6 +76,9 @@ public class BusinessPartnerController {
         String clientId = jwt.getClaim("client_id").asString();
         logger.info(String.format("Client id: %s", clientId));
 
+        logger.info("JWT token: ");
+        logger.info(String.format("JWT token %s here...", jwt.getToken()));
+
         final List<String> viewerScope = jwt.getClaim("scope").asList(String.class).stream()
                 .filter(scope -> scope.equals(clientId.substring(3)+ ".Viewer")).collect(
                         Collectors.toList());
@@ -85,9 +88,6 @@ public class BusinessPartnerController {
         if (viewerScope.isEmpty()) {
             return new ResponseEntity<String>("Missing Viewer scope...  Authorization failed", HttpStatus.FORBIDDEN);
         }
-
-        logger.info("JWT token: ");
-        logger.info(String.format("JWT token %s here...", jwt.getToken()));
 
         final List<BusinessPartner> businessPartners = new GetBusinessPartnersCommand(destination).execute();
 
